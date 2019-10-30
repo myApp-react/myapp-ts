@@ -92,29 +92,3 @@ export function queryPathKeys(array: Array<any>, current: string, parentId: stri
   getPath(current)
   return result
 }
-
-
-/**
- * In an array of objects, specify an object that traverses the objects whose parent ID matches.
- * @param   {array}     array     The Array need to Converted.
- * @param   {string}    current   Specify the object that needs to be queried.
- * @param   {string}    parentId  The alias of the parent ID of the object in the array.
- * @param   {string}    id        The alias of the unique ID of the object in the array.
- * @return  {array}    Return a key array.
- */
-export function queryAncestors(array: Array<any>, current: string, parentId: string, id: string = 'id') {
-  const result = [current]
-  const hashMap = new Map()
-  array.forEach(item => hashMap.set(item[id], item))
-
-  const getPath = (current: string) => {
-    const currentParentId = hashMap.get(current[id])[parentId]
-    if (currentParentId) {
-      result.push(hashMap.get(currentParentId))
-      getPath(hashMap.get(currentParentId))
-    }
-  }
-
-  getPath(current)
-  return result
-}
