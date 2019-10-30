@@ -31,8 +31,12 @@ class Layout extends Component<{}, LayoutState>{
   }
 }
 
-// const BasicLayout: React.FC = ({children}) => {
-//   return children
-// };
+const BasicLayout: React.FC = ({children}) => {
+  return (
+    <>
+      {children}
+    </>
+  )
+};
 
-export default Layout;
+export default BasicLayout;
